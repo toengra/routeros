@@ -1,0 +1,17 @@
+---
+- name: RouterOS test with network_cli connection
+  hosts: routers
+  gather_facts: false
+  tasks:
+
+  # Run a command and print its output
+  - community.routeros.command:
+      commands:
+        #- /system resource print
+          /ip firewall filter add chain=forward protocol=tcp dst-port=443 tls-h$
+    register: system_resource_print
+  - debug:
+      #var: system_resource_print.stdout_lines
+       var: /ip_firewall_filter_add
+  # Retrieve facts
+
